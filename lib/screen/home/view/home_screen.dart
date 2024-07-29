@@ -70,14 +70,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: MediaQuery.sizeOf(context).width,
                           decoration:  BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage("assets/image/img.jpg"),
+                                  image: const AssetImage("assets/image/img.jpg"),
                                    opacity: providerW!.isTheme?0.5:1,
                                   fit: BoxFit.cover
                               )
                           ),
                           child: Column(
                               children: [
-                                SizedBox(height: 10,),
+                                const SizedBox(height: 10,),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: SearchBar(
