@@ -6,7 +6,7 @@ class Api_helper
 {
   Future<HomeModel?> weatherApi(String city)
   async {
-   String apiLink ="https://api.openweathermap.org/data/2.5/weather?q=$city&appid=10e53e07180425654991833f5f05e8c3";
+   String apiLink ="https://api.openweathermap.org/data/2.5/weather?q=$city&appid=c7cbbe4edb4df7d4449f3291ab40735e&units=metric";
 
    var response = await http.get(Uri.parse(apiLink));
    if (response.statusCode == 200) {

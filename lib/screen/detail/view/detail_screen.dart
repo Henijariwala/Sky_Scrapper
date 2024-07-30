@@ -58,7 +58,6 @@ class _DetailScreenState extends State<DetailScreen> {
                                  mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    const Center(child: Text("Country",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)),
                                     Center(
                                       child: GlassmorphicContainer(
                                         borderRadius: 20,
@@ -79,54 +78,39 @@ class _DetailScreenState extends State<DetailScreen> {
                                           const Color((0xFFFFFFFF)).withOpacity(0.5)
                                         ],),
                                         width: 450,
-                                        height: 100,
+                                        height: 180,
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             mainAxisAlignment: MainAxisAlignment.center,
                                             children: [
-                                              Text("Country =${model.sysModel!.country}",style: const TextStyle(fontSize: 25),),
-                                              Text("TimeZone =${model.timezone}",style: const TextStyle(fontSize: 25),),
+                                              Center(child: Text("${model.name}",style: const TextStyle(fontSize: 30,fontWeight: FontWeight.bold),)),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  children: [
+                                                    Text("🌍 : ${model.sysModel!.country}",style: const TextStyle(fontSize: 25),),
+                                                    const Spacer(),
+                                                    const Text("📉",style: TextStyle(fontSize: 25),),
+                                                    Text(" : ${model.coordModel!.lon}",style: const TextStyle(fontSize: 25),),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  children: [
+                                                    const Text("🕜",style: TextStyle(fontSize: 25),),
+                                                    Text(" : ${model.timezone}",style: const TextStyle(fontSize: 25),),
+                                                    const Spacer(),
+                                                    const Text("📈",style: TextStyle(fontSize: 25),),
+                                                    Text(" : ${model.coordModel!.lat}",style: const TextStyle(fontSize: 25),),
+                                                  ],
+                                                ),
+                                              ),
                                             ],
                                           )
-                                        ),
-                                      ),
-                                    ),
-                                    const Divider(),
-                                    const Center(child: Text("City",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),)),
-                                    Center(
-                                      child: GlassmorphicContainer(
-                                        borderRadius: 20,
-                                        linearGradient: LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          colors: [
-                                            const Color(0xFFffffff).withOpacity(0.1),
-                                            const Color(0xFFFFFFFF).withOpacity(0.05)
-                                          ],
-                                        ),
-                                        border: 2,
-                                        blur: 20,
-                                        borderGradient: LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight, colors: [
-                                          const Color(0xFFffffff).withOpacity(0.5),
-                                          const Color((0xFFFFFFFF)).withOpacity(0.5)
-                                        ],),
-                                        width: 450,
-                                        height: 150,
-                                        child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Text("City =${model.name}",style: const TextStyle(fontSize: 25),),
-                                                Text("Longitude =${model.coordModel!.lon}",style: const TextStyle(fontSize: 25),),
-                                                Text("Latitude =${model.coordModel!.lat}",style: const TextStyle(fontSize: 25),),
-                                              ],
-                                            )
                                         ),
                                       ),
                                     ),
@@ -148,8 +132,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                           borderGradient: LinearGradient(
                                             begin: Alignment.topLeft,
                                             end: Alignment.bottomRight, colors: [
-                                            Color(0xFFffffff).withOpacity(0.5),
-                                            Color((0xFFFFFFFF)).withOpacity(0.5)
+                                            const Color(0xFFffffff).withOpacity(0.5),
+                                            const Color((0xFFFFFFFF)).withOpacity(0.5)
                                           ],),
                                         width: 450,
                                         height: 100,
@@ -464,7 +448,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                           const Color((0xFFFFFFFF)).withOpacity(0.5)
                                         ],),
                                         width: 450,
-                                        height: 220,
+                                        height: 250,
                                         child: const Padding(
                                           padding: EdgeInsets.all(8.0),
                                           child: SingleChildScrollView(
@@ -485,6 +469,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                     ),),
                                                   ],
                                                 ),
+                                                SizedBox(height: 5,),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: [
@@ -499,10 +484,11 @@ class _DetailScreenState extends State<DetailScreen> {
                                                     ),),
                                                   ],
                                                 ),
+                                                SizedBox(height: 5,),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: [
-                                                    Text('3/Tue .',style: TextStyle(
+                                                    Text('3/Tue  .',style: TextStyle(
                                                         fontWeight: FontWeight.bold,
                                                         fontSize: 18
                                                     ),),
@@ -513,6 +499,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                     ),),
                                                   ],
                                                 ),
+                                                SizedBox(height: 5,),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: [
@@ -527,6 +514,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                     ),),
                                                   ],
                                                 ),
+                                                SizedBox(height: 5,),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: [
@@ -542,6 +530,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                     ),),
                                                   ],
                                                 ),
+                                                SizedBox(height: 5,),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: [
@@ -556,6 +545,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                     ),),
                                                   ],
                                                 ),
+                                                SizedBox(height: 5,),
                                                 Row(
                                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                   children: [
