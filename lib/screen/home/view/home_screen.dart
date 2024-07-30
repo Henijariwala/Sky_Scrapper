@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:glassmorphism/glassmorphism.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/component/network/provider/network_provider.dart';
 import 'package:weather_app/component/network/view/network_widget.dart';
@@ -70,277 +71,312 @@ class _HomeScreenState extends State<HomeScreen> {
                           width: MediaQuery.sizeOf(context).width,
                           decoration:  BoxDecoration(
                               image: DecorationImage(
-                                  image: AssetImage("assets/image/img.jpg"),
+                                  image: const AssetImage("assets/image/img.jpg"),
                                    opacity: providerW!.isTheme?0.5:1,
                                   fit: BoxFit.cover
                               )
                           ),
-                          child: Column(
-                              children: [
-                                SizedBox(height: 10,),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: SearchBar(
-                                    controller: txtName,
-                                    hintText: "Search.... ",
-                                    elevation:
-                                    const MaterialStatePropertyAll(0.3),
-                                    trailing: [
-                                      IconButton(
-                                        onPressed: () {
-                                          context.read<HomeProvider>().getweather(txtName.text);
-                                        },
-                                        icon: const Icon(Icons.search),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const SizedBox(height: 20,),
-                                Text("${model.name}",style: const TextStyle(fontSize: 35,fontWeight: FontWeight.bold,)),
-                                const SizedBox(height: 15,),
-                                TextButton(onPressed: () {
-                                  Navigator.pushNamed(context, 'detail');
-                                },
-                                  child: Text("${model.cloudsModel!.all}°C",
-                                      style:  TextStyle(
-                                          fontSize: 35,fontWeight: FontWeight.bold,color:providerW!.isTheme? Colors.white:Colors.black)),),
-                                Text("${model.weatherList![0].main}", style: const TextStyle(
-                                    fontSize: 25,),
-                                ),
-                                const SizedBox(height: 90),
-                                Container(
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    gradient: const LinearGradient(
-                                      colors: [Colors.white24, Colors.black12],
+                          child: SingleChildScrollView(
+                            child: Column(
+                                children: [
+                                  const SizedBox(height: 10,),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SearchBar(
+                                      controller: txtName,
+                                      hintText: "Search.... ",
+                                      elevation:
+                                      const MaterialStatePropertyAll(0.3),
+                                      trailing: [
+                                        IconButton(
+                                          onPressed: () {
+                                            context.read<HomeProvider>().getweather(txtName.text);
+                                          },
+                                          icon: const Icon(Icons.search),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.wind_power),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                  "Wind Speed",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                ),
-                                                Text(
-                                                  "${model.windModel!.speed} km/h",style: const TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(width: 130,),
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.thermostat),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                  "Temperature",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                ),
-                                                Text(
-                                                  "${model.mainModel!.temp} km/h",style: const TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.water_drop),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                  "Humidity",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                ),
-                                                Text(
-                                                  "${model.mainModel!.humidity}%",style: const TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(width: 160,),
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.speed),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                  "Pressure",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                ),
-                                                Text(
-                                                  "${model.mainModel!.pressure} km/h",style: const TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.thermostat_outlined),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                  "Feels like",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                ),
-                                                Text(
-                                                  "${model.mainModel!.feels_like}",style: const TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(width: 160,),
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.remove_red_eye),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                  "Visibility",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                ),
-                                                Text(
-                                                  "${model.visibility}km",style: const TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.thermostat_auto),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                  "Max Temp.",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                ),
-                                                Text(
-                                                  "${model.mainModel!.temp_max}",style: const TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(width: 160,),
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.thermostat_auto),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                  "Min Temp.",style: TextStyle(
-                                                    fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                ),
-                                                Text(
-                                                  "${model.mainModel!.temp_min} ",style: const TextStyle(
-                                                    fontWeight: FontWeight.bold
-                                                ),
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
+                                  const SizedBox(height: 20,),
+                                  Text("${model.name}",style: const TextStyle(fontSize: 45,fontWeight: FontWeight.bold,)),
+                                  const SizedBox(height: 5,),
+                                  TextButton(onPressed: () {
+                                    Navigator.pushNamed(context, 'detail');
+                                  },
+                                    child: Text("${model.mainModel!.temp!.toInt()}°C",
+                                        style:  TextStyle(
+                                            fontSize: 35,fontWeight: FontWeight.bold,color:providerW!.isTheme? Colors.white:Colors.black)),),
+                                  Text("${model.weatherList![0].main}", style: const TextStyle(
+                                      fontSize: 25,),
                                   ),
-                                ),
-                                const SizedBox(height: 10,),
-                                Container(
-                                  padding: const EdgeInsets.all(10),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    gradient: const LinearGradient(
-                                      colors: [Colors.white24, Colors.black12],
+                                  const SizedBox(height: 60),
+                                  Center(
+                                    child: GlassmorphicContainer(
+                                      borderRadius: 20,
+                                      linearGradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          const Color(0xFFffffff).withOpacity(0.1),
+                                          const Color(0xFFFFFFFF).withOpacity(0.05)
+                                        ],
+                                      ),
+                                      border: 2,
+                                      blur: 20,
+                                      borderGradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight, colors: [
+                                        const Color(0xFFffffff).withOpacity(0.5),
+                                        const Color((0xFFFFFFFF)).withOpacity(0.5)
+                                      ],),
+                                      width: 450,
+                                      height: 430,
+                                      child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                       const Text("🍃",style: TextStyle(fontSize: 25),),
+                                                        const SizedBox(height: 5,),
+                                                        const Text(
+                                                          "Wind Speed",style: TextStyle(
+                                                            fontWeight: FontWeight.bold,fontSize: 18
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          "${model.windModel!.speed} km/h",style: const TextStyle(
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(width: 130,),
+                                                    Column(
+                                                      children: [
+                                                        const Text("🌡️",style: TextStyle(fontSize: 25,),),
+                                                        const SizedBox(height: 5,),
+                                                        const Text(
+                                                          "Temperature",style: TextStyle(
+                                                            fontWeight: FontWeight.bold,fontSize: 18
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          "${model.mainModel!.temp} km/h",style: const TextStyle(
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        const Text("💧",style: TextStyle(fontSize: 25),),
+                                                        const SizedBox(height: 5,),
+                                                        const Text(
+                                                          "Humidity",style: TextStyle(
+                                                            fontWeight: FontWeight.bold,fontSize: 18
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          "${model.mainModel!.humidity}%",style: const TextStyle(
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(width: 160,),
+                                                    Column(
+                                                      children: [
+                                                        const Text("⌛",style: TextStyle(fontSize: 25),),
+                                                        const SizedBox(height: 5,),
+                                                        const Text(
+                                                          "Pressure",style: TextStyle(
+                                                            fontWeight: FontWeight.bold,fontSize: 18
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          "${model.mainModel!.pressure} km/h",style: const TextStyle(
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        const Text("💗",style: TextStyle(fontSize: 25),),
+                                                        const SizedBox(height: 5,),
+                                                        const Text(
+                                                          "Feels like",style: TextStyle(
+                                                            fontWeight: FontWeight.bold,fontSize: 18
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          "${model.mainModel!.feels_like}",style: const TextStyle(
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(width: 160,),
+                                                    Column(
+                                                      children: [
+                                                        const Text("👁️",style: TextStyle(fontSize: 20),),
+                                                        const SizedBox(height: 5,),
+                                                        const Text(
+                                                          "Visibility",style: TextStyle(
+                                                            fontWeight: FontWeight.bold,fontSize: 18
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          "${model.visibility}km",style: const TextStyle(
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: [
+                                                    Column(
+                                                      children: [
+                                                        const Text("🌡️",style: TextStyle(fontSize: 25),),
+                                                        const SizedBox(height: 5,),
+                                                        const Text(
+                                                          "Max Temp.",style: TextStyle(
+                                                            fontWeight: FontWeight.bold,fontSize: 18
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          "${model.mainModel!.temp_max}",style: const TextStyle(
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(width: 160,),
+                                                    Column(
+                                                      children: [
+                                                        const Text("🌡️",style: TextStyle(fontSize: 25),),
+                                                        const SizedBox(height: 5,),
+                                                        const Text(
+                                                          "Min Temp.",style: TextStyle(
+                                                            fontWeight: FontWeight.bold,fontSize: 18
+                                                        ),
+                                                        ),
+                                                        Text(
+                                                          "${model.mainModel!.temp_min} ",style: const TextStyle(
+                                                            fontWeight: FontWeight.bold
+                                                        ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                      ),
                                     ),
                                   ),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.sunny_snowing),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                    "Sunrise",style: TextStyle(
-                                                  fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                    ),
-                                                Text(
-                                                    "${model.sysModel!.sunrise}",style: const TextStyle(
-                                                  fontWeight: FontWeight.bold
-                                                ),
-                                                    ),
-                                              ],
-                                            ),
-                                            const SizedBox(width: 160,),
-                                            Column(
-                                              children: [
-                                                const Icon(Icons.sunny_snowing),
-                                                const SizedBox(height: 5,),
-                                                const Text(
-                                                    "Sunset",style: TextStyle(
-                                                  fontWeight: FontWeight.bold,fontSize: 18
-                                                ),
-                                                    ),
-                                                Text(
-                                                    "${model.sysModel!.sunset} ",style: const TextStyle(
-                                                  fontWeight: FontWeight.bold
-                                                ),
-                                                    ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                  const SizedBox(height: 15,),
+                                  Center(
+                                    child: GlassmorphicContainer(
+                                      borderRadius: 20,
+                                      linearGradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          const Color(0xFFffffff).withOpacity(0.1),
+                                          const Color(0xFFFFFFFF).withOpacity(0.05)
+                                        ],
                                       ),
-                                    ],
+                                      border: 2,
+                                      blur: 20,
+                                      borderGradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight, colors: [
+                                        const Color(0xFFffffff).withOpacity(0.5),
+                                        const Color((0xFFFFFFFF)).withOpacity(0.5)
+                                      ],),
+                                      width: 450,
+                                      height: 100,
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: [
+                                                Column(
+                                                  children: [
+                                                    const Text("🌄",style: TextStyle(fontSize: 23),),
+                                                    const SizedBox(height: 2,),
+                                                    const Text(
+                                                      "Sunrise",style: TextStyle(
+                                                        fontWeight: FontWeight.bold,fontSize: 18
+                                                    ),
+                                                    ),
+                                                    Text(
+                                                      "${model.sysModel!.sunrise}",style: const TextStyle(
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const SizedBox(width: 160,),
+                                                Column(
+                                                  children: [
+                                                    const Text("🌇",style: TextStyle(fontSize: 23),),
+                                                    const SizedBox(height: 2,),
+                                                    const Text(
+                                                      "Sunset",style: TextStyle(
+                                                        fontWeight: FontWeight.bold,fontSize: 18
+                                                    ),
+                                                    ),
+                                                    Text(
+                                                      "${model.sysModel!.sunset} ",style: const TextStyle(
+                                                        fontWeight: FontWeight.bold
+                                                    ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ),
                                   ),
-                                ),
-                              ]
+                                ]
+                            ),
                           )
                       )
                   );
